@@ -1,4 +1,4 @@
-/*  nombre: ~Lautaro Beutel~
+/* nombre: ~Lautaro Beutel~
 *  email: ~lautarob52@gmail.com~
 *  fecha: ~30-03-2022~
 */
