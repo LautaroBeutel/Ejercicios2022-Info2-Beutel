@@ -1,0 +1,7 @@
+Mi idea es hacer una calculadora para un circuito astable compuesto por un 555.
+
+El programa va a tener dos modos:
+    -Al ingresar un frecuencia deseada te devuelva los valores de los componentes necesarios
+    para que ele circuito tenga esa frecuencia
+
+    -Al ingresar los valores de componentes te va a dar la frecuencia resultante.
