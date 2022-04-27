@@ -14,6 +14,6 @@ void setup() {
 }
 
 void loop(){
-    int x =map(analogRead(Sensor_In), 0, 1024, 0, 255); 
+    int x = map(analogRead(Sensor_In), 0, 1024, 0, 255); 
     analogWrite(PWM_Out, x);
 }
