@@ -29,9 +29,27 @@ int main(void){         //principio funcion main
     ptrCliente = &registroCliente;
     struct cliente alumno_1;
 
-    //a) Al miembro apellido de la estructura registroCliente
-    ptrCliente.apellido="a";
-    printf("%c", ptrCliente->apellido);
- 
+    //A) Al miembro apellido de la estructura registroCliente
+    printf("%s", "Apellido:\t");
+    scanf("%s", registroCliente.apellido);
+    printf("%s", registroCliente.apellido);
+    //B) Al miembro apellido de la estructura apuntada por ptrCliente
+    printf("%s", "\nApellido:\t");
+    scanf("%s", ptrCliente->apellido);
+    printf("%s", ptrCliente->apellido);
+    //C) Al miembro nombre de la estructura registroCliente.
+    printf("%s", "\n\nNombre:\t");
+    scanf("%s", registroCliente.nombre);
+    printf("%s", registroCliente.nombre);
+    //D) Al miembro nombre de la estructura apuntada por ptrCliente
+    printf("%s", "\nNombre:\t");
+    scanf("%s", ptrCliente->nombre);
+    printf("%s", ptrCliente->nombre);
+    //E Al miembro numeroCliente de la estructura registroCliente.
+    printf("%s", "\n\nNum_Cliente:\t");
+    scanf("%d", registroCliente.numerocliente);
+    printf("%d", registroCliente.numerocliente);
+
+
     return 0;           //finalizacion exitosa del codigo
 }//fin de de la funcion main
