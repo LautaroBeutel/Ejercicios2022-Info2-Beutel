@@ -17,7 +17,8 @@ typedef struct Componentes{
     float R2;
     float C1;
     float Freq;
-    int bandera
+    float Duty;
+    short int bandera
 }Comp;
 
 /*Constructores de las funciones*/
@@ -25,12 +26,14 @@ void Calculo_Frecuencia(Comp *Val);
 void Calculo_R1(Comp *Val);
 void Calculo_R2(Comp *Val);
 void Calculo_C1(Comp *Val);
+void Ciclo_Trabajo(Comp *Val);
 void Pedir_valores(Comp *Val);
 
+const float K = 1.44;
 
 int main(void){         //principio funcion main
     printf("\n%s\n", "----------------------CALCULADORA 555-----------------------");   //Mensaje de titulo
-    Comp Val = {0, 0, 0, 0, 0};
+    Comp Val = {0, 0, 0, 0, 0, 0};
 
     /*Menu de opciones, se ingresa 1 para usar la calculadora y un 2 para salir*/
     int opcion;
@@ -42,16 +45,18 @@ int main(void){         //principio funcion main
             case 1: Pedir_valores(&Val);
                     switch (Val.bandera){
                         case 1: Calculo_Frecuencia(&Val);
-                                printf("%f", Val.Freq);
+                                Ciclo_Trabajo(&Val);
+                                printf(">>Freq:\t%f\n", Val.Freq);
+                                printf(">>Ciclo util:\t%0.f%c\n", Val.Duty * 100, 37);
                             break;
                         case 2: Calculo_R1(&Val);
-                                printf("%f", Val.R1);
+                                printf(">>R1:\t%f\n", Val.R1);
                             break;
                         case 3: Calculo_R2(&Val);
-                                printf("%f", Val.R2);
+                                printf(">>R2:\t%f\n", Val.R2);
                             break;
                         case 4: Calculo_C1(&Val);
-                                printf("%f", Val.C1);
+                                printf(">>C1:\t%f\n", Val.C1);
                             break;
                     }
                 break;
@@ -72,7 +77,7 @@ void Pedir_valores(Comp *Val){           //funcion que pide informacion al usuar
     int index_a;
     int index_b;
     do{
-        printf("%s\n", "calcular:\n\t1>Frecuencia\n\t2>Componentes\n\t3>Calcular");
+        printf("Que desea hacer? (presione 3 una vez ingresado los datos):\n\n\t1>Frecuencia\n\t2>Componentes\n\t3>Calcular\n>>");
         scanf("%d", &index_a);
 
         switch (index_a){
@@ -123,59 +128,17 @@ void Pedir_valores(Comp *Val){           //funcion que pide informacion al usuar
                 break;
         }
     } while (index_a != 3);
-    
-    /* int seleccion;
-    int q;
-    printf("\n%s\n", "----------------------CALCULADORA 555-----------------------");
-    printf("%s\n", "calcular:\t1>Frecuencia\n\t\t2>Componentes");
-    scanf("%d", &seleccion);
-    switch (seleccion){
-        case 1: printf("%s\n", "ingrese valores de R1, R2 y C (en su unidad)");
-                printf("\tR1:");scanf("%f", &Val->R1);
-                printf("\n\tR2:");scanf("%f", &Val->R2);
-                printf("\n\tC1:");scanf("%f", &Val->C1);
-                return 1;
-            break;
-        case 2: printf("\n\t1>calcular R1\n\t2>calcular R2\n\t3>calcular C1\n");
-                scanf("%d", &q);
-                switch (q){
-                    case 1: printf("%s\n", "ingrese valores de Freq, R2 y C (en su unidad)");
-                            printf("\tFreq:");scanf("%f", &Val->Freq);
-                            printf("\n\tR2:");scanf("%f", &Val->R2);
-                            printf("\n\tC1:");scanf("%f", &Val->C1);
-                        return 2;
-                        break;
-                    case 2: printf("%s\n", "ingrese valores de Freq, R1 y C (en su unidad)");
-                            printf("\tFreq:");scanf("%f", &Val->Freq);
-                            printf("\n\tR1:");scanf("%f", &Val->R1);
-                            printf("\n\tC1:");scanf("%f", &Val->C1);
-                        return 3;
-                        break;
-                    case 3: printf("%s\n", "ingrese valores de Freq, R1 y R2 (en su unidad)");
-                            printf("\tFreq:");scanf("%f", &Val->Freq);
-                            printf("\n\tR1:");scanf("%f", &Val->R1);
-                            printf("\n\tR2:");scanf("%f", &Val->R2);
-                        return 4;
-                        break;
-                    default:
-                        return -1;
-                        break;
-                }
-            break;
-        
-        default:
-                return -1;
-            break;
-    } */
     return;
 }
 
-void Calculo_Frecuencia(Comp *Val){      //funcion que realiza el calculo de la frecuencia segun el datasheet del LM555_Fairchild
-    const float C = 1.44;
+/*Funciones que realizan los calculos para cada tarea*/
 
+void Calculo_Frecuencia(Comp *Val){      //funcion que realiza el calculo de la frecuencia segun el datasheet del LM555_Fairchild
+
+    //formula magica
     float Vel_carga = (((*Val).R1 + (2 * (*Val).R2)) * (*Val).C1);
     
-    (*Val).Freq = C / Vel_carga;
+    (*Val).Freq = K / Vel_carga;
 
     return;     //funcion finalizada
 }
@@ -183,7 +146,7 @@ void Calculo_Frecuencia(Comp *Val){      //funcion que realiza el calculo de la 
 void Calculo_R1(Comp *Val){             //funcion que calcula R1
 
     //formula magica
-    printf("r1");
+    (*Val).R1 = (K / (*Val).C1)-(2 * (*Val).Freq * (*Val).R2) / (*Val).Freq;
 
     return;     //funcion finalizada
 }
@@ -191,7 +154,7 @@ void Calculo_R1(Comp *Val){             //funcion que calcula R1
 void Calculo_R2(Comp *Val){             //funcion que calcula R2
 
     //formula magica
-    printf("r2");
+    (*Val).R2 = ((K / (*Val).C1)-((*Val).Freq * (*Val).R1)) / (2 * (*Val).Freq);
 
     return;     //funcion finalizada
 }
@@ -203,3 +166,12 @@ void Calculo_C1(Comp *Val){             //funcion que calcula C1
 
     return;     //funcion finalizada
 }
+
+void Ciclo_Trabajo(Comp *Val){
+
+    //formula magica
+    (*Val).Duty = ((*Val).R1 + (*Val).R2)/((*Val).R1 + 2*(*Val).R2);
+
+    return;
+}
+//
