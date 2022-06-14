@@ -57,12 +57,12 @@ int main(void){         //principio funcion main
                     switch (Val.bandera){       //caso 1 se solicito calcular frecuencia, caso 2 se solicita calculo de componentes del circuito
                         case 1: Calculo_Frecuencia(&Val);
                                 Ciclo_Trabajo(&Val);
-                                printf(">>Freq:\t%fHz\n", Val.Freq);
+                                printf(">>Freq:\t%0.2fHz\n", Val.Freq);
                                 printf(">>Ciclo util:\t%0.f%c\n", Val.Duty * 100, 37);
                             break;
                         case 2: Calculo_Resistencia(&Val);
-                                printf(">>R1:\t%f\n", Val.R1);
-                                printf(">>R2:\t%f\n", Val.R2);
+                                printf(">>R1:\t%0.2f\n", Val.R1);
+                                printf(">>R2:\t%0.2f\n", Val.R2);
                             break;
                         default: printf("\nNo deberias poder leer esto");       //nunca deberia parar esto
                             break;
