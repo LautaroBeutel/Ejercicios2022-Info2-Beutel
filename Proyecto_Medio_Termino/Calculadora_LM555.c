@@ -84,7 +84,7 @@ int main(void){         //principio funcion main
 void Pedir_valores(Comp *Val){           //funcion que pide informacion al usuario y almacena lo que se quiere calcular en "bandera"
     int index_a;
     do{
-        printf("Que desea hacer? (presione 3 una vez ingresado los datos):\n\n\t1>Frecuencia\n\t2>Componentes\n\t3>Calcular\n>>");
+        printf("Que desea saber? (presione 3 una vez ingresado los datos):\n\n\t1>Frecuencia\n\t2>Componentes\n\t3>Calcular\n>>");
         scanf("%d", &index_a);
 
         switch (index_a){
