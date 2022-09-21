@@ -10,18 +10,20 @@ public:
 	rectangulo(int x, int y, int b, int h);
 	~rectangulo();
 	int area();
+	int perimetro();
 	void establecer(int x, int y, int base, int alt);
-	void leer();
+	void obtener();
 	int contiene(rectangulo a);
-	void interseccion(rectangulo a);
+	void interseccion();
 };
 
 rectangulo::rectangulo(int x, int y, int b, int h)
 {
-	x_ = x;
+	establecer(x, y, b, h);
+	/*x_ = x;
 	y_ = y;
 	b_ = b;
-	h_ = h;
+	h_ = h;*/
 }
 
 rectangulo::~rectangulo()
@@ -34,6 +36,12 @@ int rectangulo::area(){
 	return a;
 }
 
+int rectangulo::perimetro(){
+	int p = ((2 * b_) + (2 * h_));
+
+	return p;
+}
+
 void rectangulo::establecer(int x, int y, int base, int alt){
 	x_ = x;
 	y_ = y;
@@ -41,72 +49,38 @@ void rectangulo::establecer(int x, int y, int base, int alt){
 	h_ = alt;
 }
 
-void rectangulo::leer(){
+void rectangulo::obtener(){
 	cout << "inicio: " << "(" << x_ << "," << y_ << ")" << endl;
-	cout << "base: " << " largo: " << b_ << "alto: " << h_ << endl;
+	cout << "base: " << b_ << " alto: " << h_ << endl;
 }
 
 int rectangulo::contiene(rectangulo a){
-	if(x_ < a.x_ ){
-		if (y_ > a.y_)
-		{
-			if (b_ > a.b_)
-			{
-				if (h_ > a.h_)
-				{
-					return 1;
-				}else{
-					return 0;
-				}
-			}else{
-				return 0;
-			}
-		}else{
+	if((x_ < a.x_) && 
+		((x_ + b_) > (a.x_ + a.b_))){
+		if((y_ > a.y_) && 
+			((y_ - h_) < (a.y_ - a.h_))){
+			return 1;
+		}
+		else{
 			return 0;
 		}
-	}else{
+	}
+	else{
 		return 0;
 	}
 }
 
-void rectangulo::interseccion(rectangulo a){
-	if (contiene(a))
-	{
-		cout << "inter-area:\t" << a.area();
-	}
-	else
-	{	
-		int x = 0;
-		int y = 0;
-
-		int j = a.b_;
-		int i = a.h_;
-
-		if (b_ == a.b_)
-		{
-			int x = b_;
-		}else
-		{
-			int x = abs((b_) - (j));
-		}
-
-		if (h_ == a.h_)
-		{
-			int y = b_;
-		}else
-		{
-			int y = abs((h_) - (i));
-		}
-		
-		rectangulo r(1, 1, x, y);
-		cout << "inter-area:\t" << r.area();
-	}
-}
+void rectangulo::interseccion(){}
 
 int main(){
-	rectangulo r1(2, 2, 1, 2);
-	rectangulo r2(1, 2, 2, 2);
-	r2.interseccion(r1);
-
+	rectangulo r1(1, 3, 3, 3);
+	rectangulo r2(2 ,2 ,1, 1);
+	
+	if(r2.contiene(r1)){
+		cout << "si" << endl;
+	}else{
+		cout << "no" << endl;
+	}
+	
 	return 0;
 }
