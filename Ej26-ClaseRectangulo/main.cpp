@@ -19,7 +19,8 @@ public:
 
 rectangulo::rectangulo(int x, int y, int b, int h)
 {
-	establecer(x, y, b, h);
+	set_coord(x, y);
+	set_tam(b, h);
 	/*x_ = x;
 	y_ = y;
 	b_ = b;
@@ -42,9 +43,12 @@ int rectangulo::perimetro(){
 	return p;
 }
 
-void rectangulo::establecer(int x, int y, int base, int alt){
+void rectangulo::set_coord(int x, int y){
 	x_ = x;
 	y_ = y;
+}
+
+void rectangulo::set_tam(int base, int alt){
 	b_ = base;
 	h_ = alt;
 }
