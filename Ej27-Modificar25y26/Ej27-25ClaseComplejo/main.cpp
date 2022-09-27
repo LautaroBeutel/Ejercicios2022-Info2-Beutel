@@ -10,7 +10,7 @@ class complejo{
 		
 		complejo &establecer(int, int);
 		
-		void print();
+		void print() const;
 		void suma(complejo x, complejo y);
 	private:
 		int i_, j_;
@@ -27,7 +27,7 @@ complejo &complejo::establecer(int i, int j){
 	return *this;
 }
 
-void complejo::print(){
+void complejo::print() const{
 	cout << i_ << "i\t" << j_ << "j"  << endl; 
 }
 
