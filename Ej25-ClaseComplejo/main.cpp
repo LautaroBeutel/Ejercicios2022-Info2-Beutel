@@ -30,9 +30,9 @@ void complejo::print(){
 }
 
 void complejo::suma(complejo x, complejo y){
+		
 	i_ = (x.i_) + (y.i_);
 	j_ = (x.j_) + (y.j_);
-	cout << "suma=\t" << i_ << "i\t" << j_ <<"j" << endl;
 }
 
 int main(){
@@ -42,7 +42,7 @@ int main(){
 	a.print();
 	b.print();
 	c.suma(a, b);
-
+	c.print();
 
 	return 0;
 }
