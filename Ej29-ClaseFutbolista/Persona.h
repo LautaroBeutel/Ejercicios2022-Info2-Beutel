@@ -3,13 +3,16 @@
 
 #include <iostream>
 #include <string>
+
 using namespace std;
+
 class persona{
-	private:
+	protected:
 		string nombre;
 		string apellido;
 	public:
 		persona(string nombre, string apellido);
+		void stdprint();
 };
 
 #endif
