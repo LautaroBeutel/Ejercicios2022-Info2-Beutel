@@ -10,7 +10,8 @@ class Producto{
 	public:
 		Producto(std::string nombre, int precio);
 		
-		int calcular(int);
+		int calcular(int, std::string arg);
+
 		void getter();
 		void setter(std::string nombre, int precio);
 		void toString();

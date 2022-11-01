@@ -3,9 +3,10 @@
 #include "NoPerecedero.h"
 
 int main(){
-	NoPerecedero heladera("heladera", 22000, "juguete sexual");
+	Perecedero heladera("heladera", 22000, 1);
 
-	heladera.getterNoPerecedero();
+	heladera.getterPerecedero();
+	heladera.calcularPerecedero(2);
 
 	return 0;
 }

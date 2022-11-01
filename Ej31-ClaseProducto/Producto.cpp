@@ -6,8 +6,12 @@ Producto::Producto(std::string nombre, int precio){
 	this->precio = precio;
 }
 
-int Producto::calcular(int cant){
-	return this->precio * cant;
+int Producto::calcular(int cant, std::string arg){
+	int calculo = this->precio * cant;
+	if(arg == "TRUE"){
+		std::cout << "precio: " << calculo << std::endl;
+	}
+	return (calculo);
 }
 
 void Producto::getter(){

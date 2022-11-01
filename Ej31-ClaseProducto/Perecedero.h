@@ -11,6 +11,8 @@ class Perecedero:public Producto{
 		
 		void setterPerecedero(std::string nombre, int precio, int dias_a_vencer);
 		void getterPerecedero();
+
+		void calcularPerecedero(int);
 };
 
 #endif

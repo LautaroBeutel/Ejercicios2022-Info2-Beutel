@@ -11,6 +11,8 @@ class NoPerecedero:public Producto{
 
 		void setterNoPerecedero(std::string nombre, int precio, std::string tipo);
 		void getterNoPerecedero();
+
+		void calcularNoPerecedero(int);
 };
 
 #endif
